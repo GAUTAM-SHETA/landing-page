@@ -1,61 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Papa from "papaparse";
 import { ShoppingCart, Search, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/ProductCard";
 import Header from "@/components/Header";
 
 const Index = () => {
-  const allRakhdis = [
-    {
-      id: 1,
-      title: "Premium Wireless Headphones",
-      price: 299,
-      image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop&crop=center",
-      category: "Electronics"
-    },
-    {
-      id: 2,
-      title: "Minimalist Watch Collection",
-      price: 199,
-      image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop&crop=center",
-      category: "Accessories"
-    },
-    {
-      id: 3,
-      title: "Designer Coffee Mug",
-      price: 29,
-      image: "https://images.unsplash.com/photo-1514228742587-6b1558fcf93a?w=500&h=500&fit=crop&crop=center",
-      category: "Home"
-    },
-    {
-      id: 4,
-      title: "Organic Cotton T-Shirt",
-      price: 45,
-      image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop&crop=center",
-      category: "Clothing"
-    },
-    {
-      id: 5,
-      title: "Leather Backpack",
-      price: 149,
-      image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop&crop=center",
-      category: "Bags"
-    },
-    {
-      id: 6,
-      title: "Smart Water Bottle",
-      price: 89,
-      image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&h=500&fit=crop&crop=center",
-      category: "Lifestyle"
-    }
-  ];
-
-  // State for selected category
+  const [allRakhdis, setAllRakhdis] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("/products.csv")
+      .then((response) => response.text())
+      .then((csvText) => {
+        Papa.parse(csvText, {
+          header: true,
+          skipEmptyLines: true,
+          complete: (results) => {
+            setAllRakhdis(results.data.map((row: any) => ({
+              ...row,
+              id: Number(row.id),
+              price: Number(row.price)
+            })));
+          },
+        });
+      });
+  }, []);
+
+  // Retrieve categories from products
+  const categories = Array.from(new Set(allRakhdis.map((r: any) => r.category))).filter(Boolean);
 
   // Filtered products
   const filteredRakhdis = selectedCategory
-    ? allRakhdis.filter((r) => r.category === selectedCategory)
+    ? allRakhdis.filter((r: any) => r.category === selectedCategory)
     : allRakhdis;
 
   // Handler for category selection
@@ -73,6 +50,8 @@ const Index = () => {
       <Header
         onCategorySelect={handleCategorySelect}
         onShowAllProducts={handleShowAllProducts}
+        // categories={[]}
+        categories={categories}
       />
 
       {/* Products Section */}
