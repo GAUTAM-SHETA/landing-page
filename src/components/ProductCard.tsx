@@ -21,11 +21,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   const handleWhatsAppClick = () => {
     const message = `Hi! I'm interested in the following product:\n` +
-      `*Category:* ${product.category}\n` +
+      `*Product ID:* ${product.id}\n` +
+      `*Product Category:* ${product.category}\n` +
       `*Price:* ₹${product.price}\n` +
       `*Product Image:* ${product.image}\n`;
     // Send to specific number
-    const whatsappUrl = `https://wa.me/918980241857?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/+918866817360?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
