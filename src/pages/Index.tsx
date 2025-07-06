@@ -28,11 +28,19 @@ const Index = () => {
   }, []);
 
   // Retrieve categories from products
-  const categories = Array.from(new Set(allRakhdis.map((r: any) => r.category))).filter(Boolean);
+  const categories = Array.from(new Set(
+    allRakhdis.flatMap((r: any) => 
+      r.category.split(',').map((cat: string) => cat.trim())
+    )
+  )).filter(Boolean);
 
   // Filtered products
   const filteredRakhdis = selectedCategory
-    ? allRakhdis.filter((r: any) => r.category === selectedCategory)
+    ? allRakhdis.filter((r: any) => {
+        // Handle products with multiple categories separated by commas
+        const productCategories = r.category.split(',').map((cat: string) => cat.trim());
+        return productCategories.includes(selectedCategory);
+      })
     : allRakhdis;
 
   // Handler for category selection
@@ -50,7 +58,7 @@ const Index = () => {
       <Header
         onCategorySelect={handleCategorySelect}
         onShowAllProducts={handleShowAllProducts}
-        // categories={[]}
+        // categories={["Male", "Female", "Kids", "Couple"]} // Example categories
         categories={categories}
       />
 

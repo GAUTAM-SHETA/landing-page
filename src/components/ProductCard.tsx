@@ -8,6 +8,7 @@ interface Product {
   price: number;
   image: string;
   category: string;
+  Name: string;
 }
 
 interface ProductCardProps {
@@ -20,11 +21,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const [imgError, setImgError] = useState(false);
 
   const handleWhatsAppClick = () => {
-    const message = `Hi! I'm interested in the following product:\n` +
-      `*Product ID:* ${product.id}\n` +
-      `*Product Category:* ${product.category}\n` +
-      `*Price:* ₹${product.price}\n` +
-      `*Product Image:* ${product.image}\n`;
+    const message = `🎉 *Product Inquiry* 🎉\n\n` +
+      `📋 *Product Code:* ${product.id}\n` +
+      `🏷️ *Product Name:* ${product.Name}\n` +
+      `📂 *Category:* ${product.category}\n` +
+      `💰 *Price:* ₹${product.price}\n` +
+      `📸 *Product Image:* ${product.image}\n\n` +
+      `Hi! I'm interested in this product. Could you please provide more details about availability, delivery, and any customization options?\n\n` +
+      `Thank you! 😊`;
     // Send to specific number
     const whatsappUrl = `https://wa.me/+918866817360?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
@@ -57,7 +61,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   // Unified full screen modal for all devices
   const ProductFullScreenModal = ({ product, handleWhatsAppClick, closeFullScreen, showModal }) => (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center p-2 bg-white bg-opacity-70`}
+      className={`fixed inset-0 z-50 flex items-center justify-center p-2 bg-black bg-opacity-80`}
       onClick={closeFullScreen}
     >
       <div
@@ -92,15 +96,18 @@ const ProductCard = ({ product }: ProductCardProps) => {
             )}
           </div>
           <div className="w-full flex flex-col items-center mt-5">
-            <div className="w-full flex justify-between items-center px-4 ">
+            <div className="w-full flex flex-col items-center px-4 mb-3">
+              <span className="text-xl sm:text-2xl font-semibold text-gray-800 mb-2 text-center">{product.Name}</span>
               <span className="text-3xl sm:text-3xl font-bold text-violet-800 drop-shadow">₹{product.price}</span>
+            </div>
+            <div className="w-full flex justify-center px-4">
               <Button
                 size="lg"
                 onClick={handleWhatsAppClick}
                 className="bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white font-semibold shadow-md px-6 py-2 rounded-full flex items-center gap-2 text-base transition-all duration-300"
               >
                 <MessageCircle size={24} />
-                Order Now
+                Enquiry
               </Button>
             </div>
             <span className="text-sm text-gray-400 mt-3">We respond quickly on WhatsApp!</span>
@@ -138,7 +145,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
             </div>
           )}
         </div>
-        <div className="flex justify-between items-center mt-3 mb-3 px-4 ">
+        <div className="px-4 mb-2">
+          <h3 className="text-lg font-semibold text-white mb-1 truncate">{product.Name}</h3>
+        </div>
+        <div className="flex justify-between items-center mt-1 mb-3 px-4 ">
           <span className="text-2xl sm:text-3xl font-bold text-white-700">
             ₹{product.price}
           </span>
@@ -148,7 +158,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             className="bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white font-semibold shadow-md px-6 py-2 rounded-full flex items-center gap-2 text-base transition-all duration-300"
           >
             <MessageCircle size={18} className="" />
-            Order Now
+            Enquiry
           </Button>
         </div>
       </div>

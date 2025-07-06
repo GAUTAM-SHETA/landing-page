@@ -1,25 +1,46 @@
-id,price,image,category
-1,40,https://i.postimg.cc/x8tYd51R/Whats-App-Image-2025-07-02-at-13-53-27-3.jpg, Rakhi 1
-2,29,https://i.postimg.cc/3J8rX5Xw/Whats-App-Image-2025-07-02-at-13-53-24.jpg, Rakhi 3
-3,45,https://i.postimg.cc/fW1zP20c/Whats-App-Image-2025-07-02-at-13-53-25.jpg, Rakhi 2
-4,30,https://i.postimg.cc/nVXV0bMV/Whats-App-Image-2025-07-02-at-13-53-25-1.jpg, Rakhi 1
-5,35,https://i.postimg.cc/8PWpgRhq/Whats-App-Image-2025-07-02-at-13-53-25-2.jpg, Rakhi 3
-6,23,https://i.postimg.cc/y8HV1DjW/Whats-App-Image-2025-07-02-at-13-53-25-3.jpg, Rakhi 1
-7,50,https://i.postimg.cc/434scjrg/Whats-App-Image-2025-07-02-at-13-53-26.jpg, Rakhi 4
-8,55,https://i.postimg.cc/vBcyqfY2/Whats-App-Image-2025-07-02-at-13-53-26-1.jpg, Rakhi 1
-9,47,https://i.postimg.cc/3wL7FnTD/Whats-App-Image-2025-07-02-at-13-53-26-2.jpg, Rakhi 3
-9,48,https://i.postimg.cc/sg43v3Hm/Whats-App-Image-2025-07-02-at-13-53-26-3.jpg, Rakhi 2
-11,35,https://i.postimg.cc/W3CvQztN/Whats-App-Image-2025-07-02-at-13-53-27-1.jpg, Rakhi 1
-12,40,https://i.postimg.cc/664wCr1y/Whats-App-Image-2025-07-02-at-13-53-27-2.jpg, Rakhi 4
-13,80,https://i.postimg.cc/Hxt1SzXg/Whats-App-Image-2025-07-02-at-13-53-27.jpg, Rakhi 3
-14,48,https://i.postimg.cc/bNrfTQv7/Whats-App-Image-2025-07-02-at-13-53-28.jpg, Rakhi 2
-15,35,https://i.postimg.cc/GbShZpwP/Whats-App-Image-2025-07-02-at-13-53-28-1.jpg, Rakhi 1
-16,40,https://i.postimg.cc/fR6skJD6/Whats-App-Image-2025-07-02-at-13-53-28-2.jpg, Rakhi 4
-17,40,https://i.postimg.cc/Z59ZTrt8/Whats-App-Image-2025-07-02-at-13-53-28-3.jpg, Rakhi 4
-
-
-
-
-
-
-
+id,price,image,category,Name
+001,50,https://i.postimg.cc/m29zJnHS/001.jpg,Male,Blue Floral Rakhi
+002,30,https://i.postimg.cc/3wtd25s3/002.jpg,Male,Blue Square Evil Eye Rakhi
+003,50,https://i.postimg.cc/PxPrZ6sc/003.jpg,Female,Half Moon Knitted Rakhi
+004,25,https://i.postimg.cc/3JPrGjnf/004.jpg,"Male,Female",Blue Crystal Rakhi
+005,40,https://i.postimg.cc/ncQpnjp4/005.jpg,Male,Red Leaf Diamond Rakhi
+006,40,https://i.postimg.cc/MTPqp1nD/006.jpg,Male,Red Round Diamond Rakhi
+007,45,https://i.postimg.cc/50nNQZR8/007.jpg,Male,Red Round Rakhi
+008,50,https://i.postimg.cc/Dz5Kx1PT/008.jpg,Male,Pink Floral Rakhi
+009,20,https://i.postimg.cc/mDDWJhmF/009.jpg,Kids,Cartoon Rakhi (20₹ each)
+010,50,https://i.postimg.cc/zGKzFLQz/010.jpg,"Male,Female",Square Thread Rakhi
+011,50,https://i.postimg.cc/66bpWxRX/011.jpg,"Male,Female",Red Leaf Rakhi
+012,50,https://i.postimg.cc/Th88K0fr/012.jpg,"Male,Female",Green Leaf Rakhi
+013,50,https://i.postimg.cc/L5JRYhfM/013.jpg,Male,Blue Diamond Rakhi
+014,30,https://i.postimg.cc/4xsfw4Rp/014.jpg,Kids,Kids Teal Green Butterfly Rakhi
+015,40,https://i.postimg.cc/0jSkXbN0/015.jpg,Male,White Round Diamond Rakhi
+016,45,https://i.postimg.cc/DZ2wZ2B2/016.jpg,Male,Green Sathiya Rakhi
+017,30,https://i.postimg.cc/L4xnJZcG/017.jpg,Kids,Blue Evil Eye Rakhi
+018,35,https://i.postimg.cc/q77kVmRR/018.jpg,Female,Blue Butterfly Rakhi
+019,30,https://i.postimg.cc/NfTFpP9v/019.jpg,Male,Blue Rounded Evil Eye Rakhi
+020,35,https://i.postimg.cc/8CgC2dvf/020.jpg,Male,Teal Green Evil Eye Rakhi
+021,20,https://i.postimg.cc/cCkH2V7d/021.jpg,Kids,Elephant Kids Rakhi
+022,40,https://i.postimg.cc/rm0MzK52/022.jpg,Male,Yellow Round Rakhi
+023,30,https://i.postimg.cc/52V0GqLY/023.jpg,Male,Infinity Blue Rakhi
+024,75,https://i.postimg.cc/Kc1RgYmz/024.jpg,Couple,Square Diamond Couple Rakhi
+025,35,https://i.postimg.cc/7Lqk1K79/025.jpg,Male,Blue Round Diamond Rakhi
+026,30,https://i.postimg.cc/GhBh9gJs/026.jpg,Kids,Kids Blue Butterfly Rakhi
+027,30,https://i.postimg.cc/wMrq0DHv/027.jpg,Female,Purple Leaf Rakhi
+028,35,https://i.postimg.cc/g2HJPXHM/028.jpg,"Female,Kids",Blue Crystal Evil Eye Rakhi
+029,50,https://i.postimg.cc/mZnTxNfZ/029.jpg,Female,Infinity Blue Thread Rakhi
+030,45,https://i.postimg.cc/k5y7L09L/030.jpg,Female,Teal Green Butterfly Rakhi
+031,25,https://i.postimg.cc/D00frB9H/031.jpg,"Male,Female",Green Crystal Rakhi
+032,35,https://i.postimg.cc/qR5HT0FD/032.jpg,Male,White Sathiya Rakhi
+033,35,https://i.postimg.cc/52BJFhHj/033.jpg,Male,Teal Green Evil Eye Crystal Rakhi
+034,70,https://i.postimg.cc/HLPTpQct/034.jpg,Couple,Pink Crystal Couple Rakhi
+035,70,https://i.postimg.cc/9XszPjfB/035.jpg,Couple,Blue Crystal Couple Rakhi
+036,60,https://i.postimg.cc/SKLKkXLT/036.jpg,Couple,Blue Butterfly & Evil Eye Rakhi
+037,25,https://i.postimg.cc/Tw9hqypL/037.jpg,"Male,Female",Pink Crystal Rakhi
+038,60,https://i.postimg.cc/bNQYQDWz/038.jpg,Couple,Blue Butterfly & Square Evil Eye Rakhi
+039,75,https://i.postimg.cc/B6kZCxJv/039.jpg,Couple,Teal Green Butterfly & Evil Eye Rakhi
+040,75,https://i.postimg.cc/rFzzxwcs/040.jpg,Couple,Blue Infinity Couple Rakhi
+041,65,https://i.postimg.cc/c4jCmG4m/041.jpg,Couple,Green Couple Rakhi
+042,85,https://i.postimg.cc/jj8SLp9P/042.jpg,Couple,Red Leaf Diamond Couple Rakhi
+043,190,https://i.postimg.cc/qvwkFfpS/043.jpg,Couple,White & Golden Thread Couple Rakhi
+044,100,https://i.postimg.cc/WzxVMj6q/044.jpg,Male,White Square Rakhi
+045,100,https://i.postimg.cc/rsRXy3XV/045.jpg,Female,Eye White & Golden Thread Rakhi
