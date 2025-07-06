@@ -67,10 +67,10 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light mb-4">
-              {selectedCategory ? `${selectedCategory} Products` : "Featured Products"}
+              {selectedCategory ? `${selectedCategory} Products` : "Rakhi Collection"}
             </h2>
             <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto px-4">
-              Discover our carefully curated collection of premium goods
+              Handcrafted rakhis made with love and traditional artistry for your special Raksha Bandhan celebrations
             </p>
           </div>
 
@@ -83,7 +83,7 @@ const Index = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-gray-900/50">
+      {/* <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-gray-900/50">
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="text-xl sm:text-2xl lg:text-3xl font-light mb-4">Stay Updated</h3>
           <p className="text-gray-400 mb-6 sm:mb-8 text-sm sm:text-base">Get notified about new products and exclusive offers</p>
@@ -98,7 +98,7 @@ const Index = () => {
             </Button>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

@@ -69,7 +69,7 @@ const Header = ({ onCategorySelect, onShowAllProducts, categories }) => {
               }}
               type="button"
             >
-              Products
+              Home
             </button>
             {categories && categories.length > 0 && (
               <div className="relative" ref={dropdownRef}>
@@ -81,7 +81,7 @@ const Header = ({ onCategorySelect, onShowAllProducts, categories }) => {
                   Categories
                 </button>
                 {dropdownOpen && (
-                  <div className="absolute left-0 mt-2 w-40 bg-gray-900 border border-gray-700 rounded shadow-lg z-50">
+                  <div className="absolute left-0 mt-2 w-40 bg-gray-900 border border-gray-700 rounded shadow-lg z-50 p-5">
                     {categories.map((cat) => (
                       <button
                         key={cat}
@@ -99,8 +99,6 @@ const Header = ({ onCategorySelect, onShowAllProducts, categories }) => {
                 )}
               </div>
             )}
-            <a href="#" className="text-gray-300 hover:text-white transition-colors text-sm lg:text-base">About</a>
-            <a href="#" className="text-gray-300 hover:text-white transition-colors text-sm lg:text-base">Contact</a>
           </nav>
           {/* Mobile Navigation - Visible on mobile only */}
           <nav className="flex md:hidden items-center space-x-2 relative">
@@ -126,10 +124,10 @@ const Header = ({ onCategorySelect, onShowAllProducts, categories }) => {
                     }}
                     type="button"
                   >
-                    Products
+                    Home
                   </button>
                   {categories && categories.length > 0 && (
-                    <div className="border-t border-gray-800">
+                    <div className="border-t border-gray-800" style={{ paddingBottom: "10px" }}>
                       <div className="text-gray-400 text-xs uppercase px-4 pt-2 pb-1 tracking-wider">Categories</div>
                       {categories.map((cat, idx) => (
                         <button
@@ -147,11 +145,6 @@ const Header = ({ onCategorySelect, onShowAllProducts, categories }) => {
                       ))}
                     </div>
                   )}
-                  {/* Only show border if categories exist */}
-                  <div className={(categories && categories.length > 0) ? "border-t border-gray-800 mt-2 pt-1" : ""}>
-                    <a href="#" className="block px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white">About</a>
-                    <a href="#" className="block px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white rounded-b">Contact</a>
-                  </div>
                 </div>
               )}
             </div>
