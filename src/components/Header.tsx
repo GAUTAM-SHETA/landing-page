@@ -58,7 +58,7 @@ const Header = ({ onCategorySelect, onShowAllProducts, categories }) => {
         <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-lg sm:text-xl font-light tracking-wide">RAKHDI</h1>
+            <h1 className="text-lg sm:text-xl font-light tracking-wide" style={{ fontWeight: 600 }}>RAKHI</h1>
           </div>
           {/* Navigation - Hidden on mobile */}
           <nav className="hidden md:flex space-x-6 lg:space-x-8">
