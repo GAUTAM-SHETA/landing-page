@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handmade Rakhis - Traditional Raksha Bandhan Collection</title>
+    
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="Handcrafted rakhis made with love and traditional artistry for your special Raksha Bandhan celebrations. Shop beautiful handmade rakhis for brothers and sisters.">
+    <meta name="keywords" content="handmade rakhis, raksha bandhan, traditional rakhis, handcrafted rakhis, rakhi online, brother sister, festival, rakhi for brother, rakhi for sister, kids rakhi, couple rakhi, designer rakhi, premium rakhi, silk thread rakhi, beaded rakhi, pearl rakhi, crystal rakhi, golden rakhi, silver rakhi, thread rakhi, bracelet rakhi, fancy rakhi, beautiful rakhi, ethnic rakhi, indian festival, hindu festival, bhai dooj, rakhi gifts, rakhi set, rakhi thread, rakhi bracelet, rakhi band, rakhi ceremony, rakhi celebration, rakhi shopping, buy rakhi online, rakhi delivery, rakhi collection, rakhi designs, rakhi patterns, rakhi art, rakhi craft, rakhi making, customized rakhi, personalized rakhi, unique rakhi, special rakhi, exclusive rakhi, limited edition rakhi, artisan rakhi, handwoven rakhi, embroidered rakhi, decorative rakhi, colorful rakhi, vibrant rakhi, elegant rakhi, stylish rakhi, modern rakhi, vintage rakhi, classic rakhi, contemporary rakhi">
+    <meta name="author" content="Handmade Rakhis">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Handmade Rakhis - Traditional Raksha Bandhan Collection">
+    <meta property="og:description" content="Handcrafted rakhis made with love and traditional artistry for your special Raksha Bandhan celebrations">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1590736969955-71cc94901144?w=1200&h=630&fit=crop">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Handmade Rakhis - Traditional Raksha Bandhan Collection">
+    <meta name="twitter:description" content="Handcrafted rakhis made with love and traditional artistry for your special Raksha Bandhan celebrations">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1590736969955-71cc94901144?w=1200&h=630&fit=crop">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Papa Parse for CSV -->
+    <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
+    
+    <style>
+        /* Custom styles */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Prevent bounce scroll */
+        html {
+            overscroll-behavior: none;
+            overflow-x: hidden;
+        }
+        
+        body {
+            overscroll-behavior: none;
+            overscroll-behavior-y: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Mobile Safari fixes */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+        
+        /* Modal styles */
+        .modal-overlay {
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        
+        .dropdown-menu {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-white">
+    <!-- Header -->
+    <header class="bg-gray-900/80 backdrop-blur-sm border-b border-gray-800 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <h1 class="text-xl font-semibold text-white">RAKHI</h1>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                    
+                    <!-- Categories Dropdown -->
+                    <div class="relative">
+                        <button id="categoriesBtn" class="flex items-center text-gray-300 hover:text-white transition-colors">
+                            Categories
+                            <i data-lucide="chevron-down" class="ml-1 h-4 w-4"></i>
+                        </button>
+                        <div id="categoriesDropdown" class="absolute left-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-lg dropdown-menu hidden">
+                            <div class="py-1">
+                                <button class="category-item block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition-colors" data-category="">All Products</button>
+                                <div id="categoryList"></div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden text-gray-300 hover:text-white">
+                    <i data-lucide="menu" class="h-6 w-6"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden bg-gray-800 border-t border-gray-700 hidden">
+            <div class="px-4 py-2 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors">Home</a>
+                
+                <!-- Mobile Categories -->
+                <div class="px-3 py-2">
+                    <button id="mobileCategoriesBtn" class="flex items-center justify-between w-full text-gray-300 hover:text-white transition-colors">
+                        Categories
+                        <i data-lucide="chevron-down" class="h-4 w-4"></i>
+                    </button>
+                    <div id="mobileCategoriesDropdown" class="mt-2 space-y-1 hidden">
+                        <button class="category-item block w-full text-left px-3 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white rounded-md transition-colors" data-category="">All Products</button>
+                        <div id="mobileCategoryList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main id="home">
+        <!-- Products Section -->
+        <section class="px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-8 sm:mb-12">
+                    <h2 id="sectionTitle" class="text-2xl sm:text-3xl lg:text-4xl font-light mb-4">
+                        Rakhi Collection
+                    </h2>
+                    <p class="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto px-4">
+                        Handcrafted rakhis made with love and traditional artistry for your special Raksha Bandhan celebrations
+                    </p>
+                </div>
+                
+                <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                    <!-- Products will be loaded here -->
+                </div>
+                
+                <!-- Loading State -->
+                <div id="loadingState" class="flex justify-center items-center py-12">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Newsletter Section -->
+        <!-- <section class="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-gray-900/50">
+            <div class="max-w-4xl mx-auto text-center">
+                <h3 class="text-xl sm:text-2xl lg:text-3xl font-light mb-4">Stay Updated</h3>
+                <p class="text-gray-400 mb-6 sm:mb-8 text-sm sm:text-base">Get notified about new products and exclusive offers</p>
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-md mx-auto">
+                    <input
+                        type="email"
+                        id="emailInput"
+                        placeholder="Enter your email"
+                        class="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-white transition-colors text-sm sm:text-base"
+                    />
+                    <button id="subscribeBtn" class="bg-white text-black hover:bg-gray-100 px-6 sm:px-8 py-3 text-sm sm:text-base rounded-lg transition-colors">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+        </section> -->
+    </main>
+    
+    <!-- Product Modal -->
+    <div id="productModal" class="fixed inset-0 bg-black bg-opacity-50 modal-overlay flex items-center justify-center z-50 hidden">
+        <div class="bg-gray-900 rounded-lg max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="relative">
+                <!-- Close Button -->
+                <button id="closeModal" class="absolute right-4 top-4 text-white hover:text-white z-10">
+                    <i data-lucide="x" class="h-6 w-6"></i>
+                </button>
+                
+                <!-- Modal Content -->
+                <div>
+                    <div class="overflow-hidden rounded-t-lg">
+                        <img id="modalImage" src="" alt="" class="w-full h-full object-cover">
+                    </div>
+                    
+                    <div class="space-y-4 p-6">
+                        <div>
+                            <span id="modalCategory" class="inline-block px-3 py-1 bg-blue-600 text-white text-sm rounded-full mb-2"></span>
+                            <h3 id="modalTitle" class="text-xl font-semibold mb-2"></h3>
+                            <p id="modalPrice" class="text-2xl font-bold text-green-400"></p>
+                        </div>
+                        
+                        <button id="modalWhatsAppBtn" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg transition-colors flex items-center justify-center">
+                            <i data-lucide="message-circle" class="h-5 w-5 mr-2"></i>
+                            Enquiry
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+        <div class="flex items-center">
+            <i data-lucide="check-circle" class="h-5 w-5 mr-2"></i>
+            <span id="toastMessage"></span>
+        </div>
+    </div>
+    
+    <script>
+        // Product data
+        const csvData = `id,price,image,category,Name
+001,50,https://i.postimg.cc/m29zJnHS/001.jpg,Male,Blue Floral Rakhi
+002,30,https://i.postimg.cc/3wtd25s3/002.jpg,Male,Blue Square Evil Eye Rakhi
+003,50,https://i.postimg.cc/PxPrZ6sc/003.jpg,Female,Half Moon Knitted Rakhi
+004,25,https://i.postimg.cc/3JPrGjnf/004.jpg,"Male,Female",Blue Crystal Rakhi
+005,40,https://i.postimg.cc/ncQpnjp4/005.jpg,Male,Red Leaf Diamond Rakhi
+006,40,https://i.postimg.cc/MTPqp1nD/006.jpg,Male,Red Round Diamond Rakhi
+007,45,https://i.postimg.cc/50nNQZR8/007.jpg,Male,Red Round Rakhi
+008,50,https://i.postimg.cc/Dz5Kx1PT/008.jpg,Male,Pink Floral Rakhi
+009,20,https://i.postimg.cc/mDDWJhmF/009.jpg,Kids,Cartoon Rakhi (20₹ each)
+010,50,https://i.postimg.cc/zGKzFLQz/010.jpg,"Male,Female",Square Thread Rakhi
+011,50,https://i.postimg.cc/66bpWxRX/011.jpg,"Male,Female",Red Leaf Rakhi
+012,50,https://i.postimg.cc/Th88K0fr/012.jpg,"Male,Female",Green Leaf Rakhi
+013,50,https://i.postimg.cc/L5JRYhfM/013.jpg,Male,Blue Diamond Rakhi
+014,30,https://i.postimg.cc/4xsfw4Rp/014.jpg,Kids,Kids Teal Green Butterfly Rakhi
+015,40,https://i.postimg.cc/0jSkXbN0/015.jpg,Male,White Round Diamond Rakhi
+016,45,https://i.postimg.cc/DZ2wZ2B2/016.jpg,Male,Green Sathiya Rakhi
+017,30,https://i.postimg.cc/L4xnJZcG/017.jpg,Kids,Blue Evil Eye Rakhi
+018,35,https://i.postimg.cc/q77kVmRR/018.jpg,Female,Blue Butterfly Rakhi
+019,30,https://i.postimg.cc/NfTFpP9v/019.jpg,Male,Blue Rounded Evil Eye Rakhi
+020,35,https://i.postimg.cc/8CgC2dvf/020.jpg,Male,Teal Green Evil Eye Rakhi
+021,20,https://i.postimg.cc/cCkH2V7d/021.jpg,Kids,Elephant Kids Rakhi
+022,40,https://i.postimg.cc/rm0MzK52/022.jpg,Male,Yellow Round Rakhi
+023,30,https://i.postimg.cc/52V0GqLY/023.jpg,Male,Infinity Blue Rakhi
+024,75,https://i.postimg.cc/Kc1RgYmz/024.jpg,Couple,Square Diamond Couple Rakhi
+025,35,https://i.postimg.cc/7Lqk1K79/025.jpg,Male,Blue Round Diamond Rakhi
+026,30,https://i.postimg.cc/GhBh9gJs/026.jpg,Kids,Kids Blue Butterfly Rakhi
+027,30,https://i.postimg.cc/wMrq0DHv/027.jpg,Female,Purple Leaf Rakhi
+028,35,https://i.postimg.cc/g2HJPXHM/028.jpg,"Female,Kids",Blue Crystal Evil Eye Rakhi
+029,50,https://i.postimg.cc/mZnTxNfZ/029.jpg,Female,Infinity Blue Thread Rakhi
+030,45,https://i.postimg.cc/k5y7L09L/030.jpg,Female,Teal Green Butterfly Rakhi
+031,25,https://i.postimg.cc/D00frB9H/031.jpg,"Male,Female",Green Crystal Rakhi
+032,35,https://i.postimg.cc/qR5HT0FD/032.jpg,Male,White Sathiya Rakhi
+033,35,https://i.postimg.cc/52BJFhHj/033.jpg,Male,Teal Green Evil Eye Crystal Rakhi
+034,70,https://i.postimg.cc/HLPTpQct/034.jpg,Couple,Pink Crystal Couple Rakhi
+035,70,https://i.postimg.cc/9XszPjfB/035.jpg,Couple,Blue Crystal Couple Rakhi
+036,60,https://i.postimg.cc/SKLKkXLT/036.jpg,Couple,Blue Butterfly & Evil Eye Rakhi
+037,25,https://i.postimg.cc/Tw9hqypL/037.jpg,"Male,Female",Pink Crystal Rakhi
+038,60,https://i.postimg.cc/bNQYQDWz/038.jpg,Couple,Blue Butterfly & Square Evil Eye Rakhi
+039,75,https://i.postimg.cc/B6kZCxJv/039.jpg,Couple,Teal Green Butterfly & Evil Eye Rakhi
+040,75,https://i.postimg.cc/rFzzxwcs/040.jpg,Couple,Blue Infinity Couple Rakhi
+041,65,https://i.postimg.cc/c4jCmG4m/041.jpg,Couple,Green Couple Rakhi
+042,85,https://i.postimg.cc/jj8SLp9P/042.jpg,Couple,Red Leaf Diamond Couple Rakhi
+043,190,https://i.postimg.cc/qvwkFfpS/043.jpg,Couple,White & Golden Thread Couple Rakhi
+044,100,https://i.postimg.cc/WzxVMj6q/044.jpg,Male,White Square Rakhi
+045,100,https://i.postimg.cc/rsRXy3XV/045.jpg,Female,Eye White & Golden Thread Rakhi`;
+
+        // Global variables
+        let allProducts = [];
+        let filteredProducts = [];
+        let selectedCategory = null;
+        let categories = [];
+        
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Parse CSV data
+        function parseCSV() {
+            try {
+                const results = Papa.parse(csvData, {
+                    header: true,
+                    skipEmptyLines: true
+                });
+                
+                if (results.errors.length > 0) {
+                    console.error('CSV parsing errors:', results.errors);
+                }
+                
+                allProducts = results.data.map(row => ({
+                    id: row.id,
+                    price: parseInt(row.price) || 0,
+                    image: row.image || '',
+                    category: row.category || '',
+                    name: row.Name || 'Unnamed Product'
+                }));
+                
+                // Extract categories
+                categories = [...new Set(
+                    allProducts.flatMap(product => 
+                        product.category.split(',').map(cat => cat.trim())
+                    )
+                )].filter(Boolean);
+                
+                filteredProducts = allProducts;
+                
+                console.log('Products loaded:', allProducts.length);
+                console.log('Categories found:', categories);
+            } catch (error) {
+                console.error('Error parsing CSV data:', error);
+                showToast('Error loading products. Please refresh the page.');
+            }
+        }
+        
+        // Render products
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            const loading = document.getElementById('loadingState');
+            
+            loading.classList.add('hidden');
+            
+            if (filteredProducts.length === 0) {
+                grid.innerHTML = '<p class="col-span-full text-center text-gray-400">No products found.</p>';
+                return;
+            }
+            
+            grid.innerHTML = filteredProducts.map(product => `
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg card-hover fade-in cursor-pointer" onclick="openProductModal('${product.id}')">
+                    <div class="overflow-hidden">
+                        <img src="${product.image}" alt="${product.name}" class="w-full object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiM0YjU1NjMiLz48dGV4dCB4PSIxMDAiIHk9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzlmYTNhOCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0Ij5JbWFnZSBOb3QgRm91bmQ8L3RleHQ+PC9zdmc+'"">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex flex-wrap gap-1 mb-2">
+                            ${product.category.split(',').map(cat => `<span class="inline-block px-2 py-1 bg-blue-600 text-white text-xs rounded-full">${cat.trim()}</span>`).join('')}
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">${product.name}</h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-green-400">₹${product.price}</span>
+                            <button onclick="event.stopPropagation(); sendWhatsApp('${product.id}')" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm transition-colors flex items-center">
+                                <i data-lucide="message-circle" class="h-4 w-4 mr-1"></i>
+                                Enquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Re-initialize Lucide icons for new content
+            lucide.createIcons();
+        }
+        
+        // Render categories
+        function renderCategories() {
+            const desktopList = document.getElementById('categoryList');
+            const mobileList = document.getElementById('mobileCategoryList');
+            
+            const categoryHTML = categories.map(category => `
+                <button class="category-item block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition-colors" data-category="${category}">
+                    ${category}
+                </button>
+            `).join('');
+            
+            const mobileCategoryHTML = categories.map(category => `
+                <button class="category-item block w-full text-left px-3 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white rounded-md transition-colors" data-category="${category}">
+                    ${category}
+                </button>
+            `).join('');
+            
+            desktopList.innerHTML = categoryHTML;
+            mobileList.innerHTML = mobileCategoryHTML;
+        }
+        
+        // Filter products
+        function filterProducts(category) {
+            selectedCategory = category;
+            
+            if (category) {
+                filteredProducts = allProducts.filter(product => 
+                    product.category.split(',').map(cat => cat.trim()).includes(category)
+                );
+                document.getElementById('sectionTitle').textContent = `${category} Products`;
+            } else {
+                filteredProducts = allProducts;
+                document.getElementById('sectionTitle').textContent = 'Rakhi Collection';
+            }
+            
+            renderProducts();
+        }
+        
+        // Open product modal
+        function openProductModal(productId) {
+            const product = allProducts.find(p => p.id === productId);
+            if (!product) return;
+            
+            document.getElementById('modalImage').src = product.image;
+            document.getElementById('modalTitle').textContent = product.name;
+            document.getElementById('modalPrice').textContent = `₹${product.price}`;
+            document.getElementById('modalCategory').textContent = product.category.split(',')[0].trim();
+            
+            document.getElementById('modalWhatsAppBtn').onclick = () => sendWhatsApp(productId);
+            document.getElementById('productModal').classList.remove('hidden');
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close product modal
+        function closeProductModal() {
+            document.getElementById('productModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Send WhatsApp message
+        function sendWhatsApp(productId) {
+            const product = allProducts.find(p => p.id === productId);
+            if (!product) return;
+            
+            const message = `Hi! I'm interested in this rakhi:
+
+🏷️ Product Code: ${product.id}
+📱 Name: ${product.name}
+🏷️ Category: ${product.category}
+💰 Price: ₹${product.price}
+🔗 Image: ${product.image}
+
+Could you please provide more details about this product?`;
+            
+            const whatsappUrl = `https://wa.me/+918866817360?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            
+            showToast('WhatsApp message prepared!');
+        }
+        
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toastMessage.textContent = message;
+            toast.classList.remove('translate-x-full');
+            toast.classList.add('translate-x-0');
+            
+            setTimeout(() => {
+                toast.classList.remove('translate-x-0');
+                toast.classList.add('translate-x-full');
+            }, 3000);
+        }
+        
+        // Initialize the app
+        function init() {
+            parseCSV();
+            renderCategories();
+            renderProducts();
+            
+            // Event listeners
+            document.getElementById('categoriesBtn').addEventListener('click', () => {
+                document.getElementById('categoriesDropdown').classList.toggle('hidden');
+            });
+            
+            document.getElementById('mobileCategoriesBtn').addEventListener('click', () => {
+                document.getElementById('mobileCategoriesDropdown').classList.toggle('hidden');
+            });
+            
+            document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.toggle('hidden');
+            });
+            
+            document.getElementById('closeModal').addEventListener('click', closeProductModal);
+            
+            document.getElementById('productModal').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('productModal')) {
+                    closeProductModal();
+                }
+            });
+            
+            // document.getElementById('subscribeBtn').addEventListener('click', () => {
+            //     const email = document.getElementById('emailInput').value;
+            //     if (email) {
+            //         showToast('Thank you for subscribing!');
+            //         document.getElementById('emailInput').value = '';
+            //     } else {
+            //         showToast('Please enter a valid email address');
+            //     }
+            // });
+            
+            // Category filter events
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('category-item')) {
+                    const category = e.target.dataset.category;
+                    filterProducts(category || null);
+                    
+                    // Hide dropdowns
+                    document.getElementById('categoriesDropdown').classList.add('hidden');
+                    document.getElementById('mobileCategoriesDropdown').classList.add('hidden');
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+            
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('#categoriesBtn') && !e.target.closest('#categoriesDropdown')) {
+                    document.getElementById('categoriesDropdown').classList.add('hidden');
+                }
+                
+                if (!e.target.closest('#mobileMenuBtn') && !e.target.closest('#mobileMenu')) {
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeProductModal();
+                    document.getElementById('categoriesDropdown').classList.add('hidden');
+                    document.getElementById('mobileCategoriesDropdown').classList.add('hidden');
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        }
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
